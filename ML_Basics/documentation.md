@@ -33,7 +33,8 @@ L = 0.001
 epochs = 300
 for epochs{
     m,b = gradient_descent(m,b,data,L)
-} ```
+}
+```
   
 
 Note: I'm never writing math with html ever again
