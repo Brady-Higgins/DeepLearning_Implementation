@@ -3,17 +3,34 @@
 ## Math
 *Mean Squared Error = MSE*
 
-MSE= $\frac{1}{n} \sum_{i=0}^{n} (y_i - \hat{y}_i)^2$ &nbsp;&nbsp;&nbsp;     (1.1)  
-MSE= $\frac{1}{n} \sum_{i=0}^{n} (y_i - (m*x_i + b))^2$&nbsp;&nbsp;&nbsp;(1.2)  
+\[
+MSE = \frac{1}{n} \sum_{i=0}^{n} (y_i - \hat{y}_i)^2 \quad (1.1)
+\]
 
-**Take the partial derivative with respect to the gradient (m)**  
-$\frac{\partial MSE}{\partial b} = \frac{-2}{n} \sum_{i=0}^{n} ( x_i * (y_i - (m*x_i + b))$  &nbsp;&nbsp;&nbsp; (1.3)  
-**Take the partial derivative with respect to the bias parameter (b)**  
-$\frac{\partial MSE}{\partial b} = \frac{-2}{n} \sum_{i=0}^{n} ((y_i - (m*x_i + b))$$ &nbsp;&nbsp;&nbsp;(1.4)
+\[
+MSE = \frac{1}{n} \sum_{i=0}^{n} (y_i - (m \cdot x_i + b))^2 \quad (1.2)
+\]
 
-**Solving for gradient descent**  
-m = m - $L * \frac{\partial MSE}{\partial m}$  
-b = b - $L * \frac{\partial MSE}{\partial b}$
+**Partial derivatives:**
+
+\[
+\frac{\partial MSE}{\partial m} = \frac{-2}{n} \sum_{i=0}^{n} (x_i \cdot (y_i - (m \cdot x_i + b))) \quad (1.3)
+\]
+
+\[
+\frac{\partial MSE}{\partial b} = \frac{-2}{n} \sum_{i=0}^{n} (y_i - (m \cdot x_i + b)) \quad (1.4)
+\]
+
+**Gradient Descent:**
+
+
+\[
+m = m - L \cdot \frac{\partial MSE}{\partial m}
+\]
+
+\[
+b = b - L \cdot \frac{\partial MSE}{\partial b}
+\]
 
 ## Code implementation
 ``` 
@@ -32,5 +49,3 @@ for epochs{
     m,b = gradient_descent(m,b,data,L)
 } ```
   
-
-![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Linear_regression.svg/800px-Linear_regression.svg.png)
