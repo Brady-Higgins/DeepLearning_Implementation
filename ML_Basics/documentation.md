@@ -1,53 +1,39 @@
 # Implementation of a Linear Regression Algorithm
 
 ## Math
+*Mean Squared Error = MSE*  
 
-**Mean Squared Error (MSE):**
+MSE = <sup>1</sup>&frasl;<sub>n</sub> ∑<sub>i=0</sub><sup>n</sup> (y<sub>i</sub> - &ycirc;<sub>i</sub>)<sup>2</sup>
+ &nbsp;&nbsp;&nbsp;     (1.1)  
+MSE = <sup>1</sup>&frasl;<sub>n</sub> ∑<sub>i=0</sub><sup>n</sup> (y<sub>i</sub> - (mx<sub>i</sub> + b))<sup>2</sup> (1.2)
 
-\[
-\text{MSE} = \frac{1}{n} \sum_{i=0}^{n} (y_i - \hat{y}_i)^2 \quad (1.1)
-\]
 
-\[
-\text{MSE} = \frac{1}{n} \sum_{i=0}^{n} (y_i - (mx_i + b))^2 \quad (1.2)
-\]
 
-**Partial derivatives:**
+**Take the partial derivative with respect to the gradient (m)**  
+<sup>∂MSE</sup>&frasl;<sub>∂m</sub> = <sup>-2</sup>&frasl;<sub>n</sub> ∑<sub>i=0</sub><sup>n</sup> (x<sub>i</sub>(y<sub>i</sub> - (mx<sub>i</sub> + b)))  &nbsp;&nbsp;&nbsp; (1.3)  
+**Take the partial derivative with respect to the bias parameter (b)**  
+<sup>∂MSE</sup>&frasl;<sub>∂b</sub> = <sup>-2</sup>&frasl;<sub>n</sub> ∑<sub>i=0</sub><sup>n</sup> (y<sub>i</sub> - (mx<sub>i</sub> + b)) &nbsp;&nbsp;&nbsp;(1.4)
 
-\[
-\frac{\partial \text{MSE}}{\partial m} = \frac{-2}{n} \sum_{i=0}^{n} (x_i (y_i - (mx_i + b))) \quad (1.3)
-\]
+**Solving for gradient descent**  
+m = m - L * <sup>∂MSE</sup>&frasl;<sub>∂m</sub><br>
+b = b - L * <sup>∂MSE</sup>&frasl;<sub>∂b</sub>
 
-\[
-\frac{\partial \text{MSE}}{\partial b} = \frac{-2}{n} \sum_{i=0}^{n} (y_i - (mx_i + b)) \quad (1.4)
-\]
+## Code implementation
+``` 
+gradient descent (m,b, data, L) =
+    for data:
+        m_gradient = plug into equation 1.3
+        b_gradient = plug into equation 1.4
+    m = m - m_gradient * L
+    b = b - b_gradient * L
+    return m,b
 
-**Gradient Descent:**
-
-Update rules:
-
-\[
-m = m - L \frac{\partial \text{MSE}}{\partial m}
-\]
-
-\[
-b = b - L \frac{\partial \text{MSE}}{\partial b}
-\]
-
-## Code Implementation
-
-```python
-def gradient_descent(m, b, data, L):
-    for x, y in data:
-        m_gradient = -2 / len(data) * \sum_{i=0}^{n} (x (y - (mx + b)))
-        b_gradient = -2 / len(data) * \sum_{i=0}^{n} (y - (mx + b))
-        
-    m -= m_gradient * L
-    b -= b_gradient * L
-    return m, b
-
-m, b = 0, 0
+m,b = 0
 L = 0.001
 epochs = 300
-for _ in range(epochs):
-    m, b = gradient_descent(m, b, data, L)
+for epochs{
+    m,b = gradient_descent(m,b,data,L)
+} ```
+  
+
+Note: I'm never writing math with html ever again
